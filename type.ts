@@ -81,6 +81,74 @@
     console.log("===================*•.¸♡ Unkonwn ♡¸.•* ===================");
     // 알 수 없는 타입
     // 어떤 값도 할당 가능하지만, any 제외 다른 타입에 할당 불가
+    // 타입 단언(Assertions)이나 타입 가드(Guards)를 필요로 한다!?
     const unknownValue: unknown = 12;
- 
+
+
+
+    // Object ---------------------------------
+    console.log("===================*•.¸♡ Object ♡¸.•* ===================");
+    // typeof 연산자가 object로 반환하는 모든 타입을 포함 ( {}, [], function(){}, null 등)
+    // strict모드일 경우 null은 제외
+    let userA: { name: string, age: number } = { // property별 타입 지정
+        name: 'HEROPY',
+        age: 123
+    };
+
+    let userB: User = { // 반복적일 경우 interface나 type 사용
+        name: 'test',
+        age: 12
+    };
+
+
+
+    // Null, Undefined ---------------------------------
+    console.log("===================*•.¸♡ Null, Undefined ♡¸.•* ===================");
+    // 모든 타입의 하위 타입. 서로의 타입에도 할당 가능
+    // "strictNullChecks": true
+
+
+
+    // Void ---------------------------------
+    console.log("===================*•.¸♡ Void ♡¸.•* ===================");
+    // 반환 값이 없는 함수의 반환 타입 (실제로는 undefined 리턴)
+
+
+
+    // Never ---------------------------------
+    console.log("===================*•.¸♡ Never ♡¸.•* ===================");
+    // 절대 발생하지 않을 값
+    const error = (message: string): never => {
+        throw new Error(message);
+    }
+
+
+    // Union ---------------------------------
+    console.log("===================*•.¸♡ Union ♡¸.•* ===================");
+    // 두 개 이상의 타입을 허용하는 경우. | == OR, ()는 해도 되고 안 해도 됨
+    let union: (string | number);
+    union = 'Hello type!';
+    union = 123;
+      
+
+
+    // Intersection ---------------------------------
+    console.log("===================*•.¸♡ Intersection ♡¸.•* ===================");
+    // 1개 이상의 타입을 조합. & == AND, ()는 해도 되고 안 해도 됨
+    interface IValidation {
+        isValid: boolean
+    }
+
+    const sojin: User & IValidation = {
+        name: 'sojin',
+        age: 85,
+        isValid: true
+    };
+    
+
+
+    // Function ---------------------------------
+    console.log("===================*•.¸♡ Function ♡¸.•* ===================");
+    let myFunc: (num1: number, num2: number) => number; // 화살표 함수의 타입 선언
+    let myFunc2: () => void;
 }
