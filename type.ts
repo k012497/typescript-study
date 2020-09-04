@@ -151,4 +151,35 @@
     console.log("===================*•.¸♡ Function ♡¸.•* ===================");
     let myFunc: (num1: number, num2: number) => number; // 화살표 함수의 타입 선언
     let myFunc2: () => void;
+
+
+
+    console.log("===================*•.¸♡ ETC ♡¸.•* ===================");
+    
+    // Type Inference / Type Assertions ---------------------------------
+    const myFunc3 = (val: string | number, isNumber: boolean) => {
+        // some logics
+        if (isNumber) { // isNumber라는 이름만으로 val이 어떤 타입인지 타입스크립트는 추론 불가! >> 타입 단언
+            
+            // 1. 변수 as 타입
+            (val as number).toFixed(2);
+
+            // 2. <타입>변수
+            // (<number>val).toFixed(2);
+        }
+    }
+
+
+
+    // Non-null Assertion Operator ---------------------------------
+    // !
+    const myFunc4 = (x: number | null | undefined) => {
+        return x!.toFixed(2);
+    }
+
+    // 컴파일 환경에서 체크하기 힘든 DOM 사용에 유용하다 
+    document.querySelector('.menu-item')!.innerHTML;
+
+
+    
 }
