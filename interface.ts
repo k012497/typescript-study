@@ -7,6 +7,8 @@ interface IUser {
     readonly isNewUser?: boolean // 읽기 전용 속성 - 초기화된 값을 유지
 }
 
+
+console.log("=================== Readonly ===================");
 let user1: Readonly<IUser> = {
     name: 'Neo',
     age: 36,
@@ -36,6 +38,52 @@ let user3 = {
 } as const; // Type assertion
 console.log("user3.age = 24; // Error");
 console.log("user3.name = 'Sop'; // Error");
+
+
+console.log("=================== As Function Type ===================");
+interface ITask {
+    date: string,
+    taskList: Array<string>
+}
+
+interface IGetTask {
+    (date: string): ITask | void // 호출 시그니처(Call signature)
+}
+
+const task1: ITask = {
+    date: '20200903',
+    taskList: ['tsc', 'cloud']
+}
+
+const task2: ITask = {
+    date: '20200904',
+    taskList: ['tsc', 'cloud']
+}
+
+let taskArr: Array<ITask> = [];
+taskArr.push(task1);
+taskArr.push(task2);
+
+const getTask: IGetTask = function (date) { // date is string 
+    let foundTask: ITask | undefined;
+    taskArr.forEach((taskObj) => {
+        if (taskObj.date === date) {
+            foundTask = taskObj;
+        }
+    });
+
+    if (foundTask!) {
+        return foundTask;
+    } else {
+        return {
+            date: date,
+            taskList: ['nothing to do !']
+        }
+    }
+}
+
+console.log("getTask()", getTask('20200904'));
+console.log("getTask()", getTask('20200905'));
 
 
 export default IUser;
