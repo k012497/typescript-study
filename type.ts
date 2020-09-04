@@ -1,3 +1,5 @@
+
+import IUser from './interface';
 {
     // function ---------------------------------
     console.log("=================== *•.¸♡ FUNCTION ♡¸.•* ===================");
@@ -14,12 +16,7 @@
     const array1: (string | number)[] = ['a', 1]; // : Array<string | number>
     const array2: any[] = ['1', 2, false, {}, []];
 
-    interface User {
-        name: string,
-        age: number
-    }
-
-    const userArr: User[] = [ // 인터페이스나 커스텀 타입
+    const userArr: IUser[] = [ // 인터페이스나 커스텀 타입
         {
             name: 'sophie',
             age: 22
@@ -95,7 +92,7 @@
         age: 123
     };
 
-    let userB: User = { // 반복적일 경우 interface나 type 사용
+    let userB: IUser = { // 반복적일 경우 interface나 type 사용
         name: 'test',
         age: 12
     };
@@ -139,7 +136,7 @@
         isValid: boolean
     }
 
-    const sojin: User & IValidation = {
+    const sojin: IUser & IValidation = {
         name: 'sojin',
         age: 85,
         isValid: true
@@ -155,7 +152,7 @@
 
 
     console.log("===================*•.¸♡ ETC ♡¸.•* ===================");
-    
+
     // Type Inference / Type Assertions ---------------------------------
     const myFunc3 = (val: string | number, isNumber: boolean) => {
         // some logics
@@ -172,7 +169,7 @@
 
 
     // Non-null Assertion Operator ---------------------------------
-    // !
+    // !, null이 아닌 경우
     const myFunc4 = (x: number | null | undefined) => {
         return x!.toFixed(2);
     }
